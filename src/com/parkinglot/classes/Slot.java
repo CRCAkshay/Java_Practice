@@ -4,27 +4,31 @@ import java.util.ArrayList;
 
 public class Slot {
     private boolean isParked;
-    private String slotNumber;
-    public ArrayList<Integer> availableSlotList;
+    private Integer slotNumber;
+    private ArrayList<Slot> totalSlots;
 
     public boolean isSlotFree() {
         return isParked != true;
     }
+    public ArrayList<Slot> initializeSlot(int totalNumberOfSlot){
 
+        this.totalSlots = new ArrayList<Slot>() {};
+        for (int i=1; i<= totalNumberOfSlot; i++) {
+            this.slotNumber =i;
+            totalSlots.add(this);
+        }
+
+        return totalSlots;
+    }
     public Slot makeSlotFree(){
         isParked = false;
         return this;
     }
-
-    public ArrayList<Integer> initializeSlot(int totalNumberOfSlot){
-        this.availableSlotList = new ArrayList<Integer>() {};
-        for (int i=1; i<= totalNumberOfSlot; i++) {
-            this.availableSlotList.add(i);
-        }
-        return availableSlotList;
+    public Integer getSlotNumber() {
+        return slotNumber;
     }
 
-    public String getSlotNumber() {
-        return slotNumber;
+    public void makeSlotOccupied() {
+        this.isParked = false;
     }
 }

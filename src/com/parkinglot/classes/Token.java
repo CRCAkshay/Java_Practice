@@ -20,9 +20,6 @@ public class Token {
     public String getTokenNumber() {
         return tokenNumber;
     }
-    public Car getCarDetails() {
-        return carDetails;
-    }
     public Slot getSlotDetails() {
         return slotDetails;
     }
