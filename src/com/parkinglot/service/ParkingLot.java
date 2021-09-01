@@ -1,8 +1,16 @@
+package com.parkinglot.service;
+
+import com.parkinglot.classes.Car;
+import com.parkinglot.classes.Slot;
+import com.parkinglot.classes.Token;
+
+import javax.swing.*;
+import java.lang.reflect.Array;
 import java.util.*;
 
 public class ParkingLot {
     private int totalNumberOfSlots;
-    private Slot slotsInParkingLot;
+    private ArrayList<Integer> slotsInParkingLot;
     private List<Token> tokenForLot;
     private List<Token> historyOfParking;
 

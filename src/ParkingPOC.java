@@ -40,10 +40,10 @@ public class ParkingPOC extends UserInput{
 
 
 
-        System.out.println("Car Color: ");
+        System.out.println("com.parkinglot.classes.Car Color: ");
         String carColor = UserInput.getInput();
         
-        System.out.println("Car Number: ");
+        System.out.println("com.parkinglot.classes.Car Number: ");
         String carNumber = UserInput.getInput();
 
 
@@ -88,7 +88,7 @@ public class ParkingPOC extends UserInput{
     }
     public static void makeSearch(){
         
-        System.out.println("Car Number/Color: ");
+        System.out.println("com.parkinglot.classes.Car Number/Color: ");
         String searchVal = UserInput.getInput();
         Integer ticketCounter = 0;
         LinkedHashSet<ArrayList<Object>> lhSet = new LinkedHashSet(Cars);
@@ -97,8 +97,8 @@ public class ParkingPOC extends UserInput{
         for (ArrayList<Object> arrayList : lhSet) {
             if(arrayList.get(0).equals(searchVal) || arrayList.get(1).equals(searchVal) ){
                 System.out.println("=========Ticket Number: "+ticketCounter+"=========");
-                System.out.println("Car Color: "+arrayList.get(0));
-                System.out.println("Car Number: "+arrayList.get(1));
+                System.out.println("com.parkinglot.classes.Car Color: "+arrayList.get(0));
+                System.out.println("com.parkinglot.classes.Car Number: "+arrayList.get(1));
             }
             ticketCounter++;
         }        

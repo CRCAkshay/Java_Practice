@@ -1,3 +1,5 @@
+package com.parkinglot.classes;
+
 import java.util.Date;
 public class Token {
     private String tokenNumber;
