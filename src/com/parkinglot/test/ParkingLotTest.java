@@ -31,9 +31,9 @@ public class ParkingLotTest {
         Car car = new Car();
         car.setCarNumber("Abc");
         car.setCarColor("Blue");
-        Token abc = numberOfSlots.parkTheCar(car);
+        Token Token = numberOfSlots.parkTheCar(car);
 
-        String unParkMessage = numberOfSlots.unParkTheCar(abc);
+        String unParkMessage = numberOfSlots.unParkTheCar(Token);
         assertEquals(unParkMessage,"Car entry removed");
     }
 
@@ -43,17 +43,17 @@ public class ParkingLotTest {
         Car car = new Car();
         car.setCarNumber("Abc1");
         car.setCarColor("Blue1");
-        Token abc = numberOfSlots.parkTheCar(car);
+        Token Token1 = numberOfSlots.parkTheCar(car);
 
         car.setCarNumber("Abc2");
         car.setCarColor("Blue3");
-        Token abc2 = numberOfSlots.parkTheCar(car);
+        Token Token2 = numberOfSlots.parkTheCar(car);
 
         car.setCarNumber("Abc3");
         car.setCarColor("Blue3");
-        Token abc3 = numberOfSlots.parkTheCar(car);
+        Token Token3 = numberOfSlots.parkTheCar(car);
 
-        assertEquals(abc3,null);
+        assertEquals(Token3,null);
 
     }
 
@@ -75,7 +75,7 @@ public class ParkingLotTest {
         Car car = new Car();
         car.setCarNumber("Abc");
         car.setCarColor("Blue");
-        Token token = numberOfSlots.parkTheCar(car);
+        numberOfSlots.parkTheCar(car);
         Token searchToken = numberOfSlots.searchTokenNumber("WrongVal");
         assertEquals(searchToken,null);
     }
