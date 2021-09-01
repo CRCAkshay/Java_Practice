@@ -27,4 +27,8 @@ public class Token {
         this.checkOutTime = System.currentTimeMillis();
         return this;
     }
+
+    public Car getCarDetails() {
+        return carDetails;
+    }
 }

@@ -1,9 +1,14 @@
 package com.parkinglot.test;
 import com.parkinglot.classes.Car;
+import com.parkinglot.classes.Slot;
 import com.parkinglot.classes.Token;
 import com.parkinglot.service.ParkingLot;
-import static org.junit.Assert.assertEquals;
+
 import org.junit.Test;
+
+import javax.management.ObjectName;
+
+import static org.junit.Assert.*;
 
 public class ParkingLotTest {
 
@@ -15,8 +20,8 @@ public class ParkingLotTest {
         Car car = new Car();
         car.setCarNumber("Abc");
         car.setCarColor("Blue");
-        Token abc = numberOfSlots.parkTheCar(car);
-        assertEquals(abc.getTokenNumber(),String.valueOf(System.currentTimeMillis()));
+        Token token = numberOfSlots.parkTheCar(car);
+        assertTrue(!token.getTokenNumber().isBlank());
 
     }
 
@@ -50,5 +55,28 @@ public class ParkingLotTest {
 
         assertEquals(abc3,null);
 
+    }
+
+    @Test
+    public void testToSearchATokenPositive(){
+        ParkingLot numberOfSlots = new ParkingLot(2);
+        Car car = new Car();
+        car.setCarNumber("Abc");
+        car.setCarColor("Blue");
+        Token token = numberOfSlots.parkTheCar(car);
+        Token searchToken = numberOfSlots.searchTokenNumber(token.getTokenNumber());
+        Car carDetails = searchToken.getCarDetails();
+        assertEquals(carDetails.getCarColor(),"Blue");
+    }
+
+    @Test
+    public void testToSearchATokenNegative(){
+        ParkingLot numberOfSlots = new ParkingLot(2);
+        Car car = new Car();
+        car.setCarNumber("Abc");
+        car.setCarColor("Blue");
+        Token token = numberOfSlots.parkTheCar(car);
+        Token searchToken = numberOfSlots.searchTokenNumber("WrongVal");
+        assertEquals(searchToken,null);
     }
 }

@@ -67,7 +67,14 @@ public class ParkingLot {
         }
         return null;
     }
-
+    public Token searchTokenNumber(String tokenNumber){
+        for(Token tokenSearch:tokenForLot){
+            if(tokenSearch.getTokenNumber() == tokenNumber){
+                return tokenSearch;
+            }
+        }
+        return null;
+    }
     private boolean isSlotAvailble() {
         boolean isSlotAvailble = false;
 
