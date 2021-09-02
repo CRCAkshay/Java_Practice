@@ -41,13 +41,13 @@ public class ParkingLot {
         }
     }
 
-    public String unParkTheCar(Token token){
+    public String unParkTheCar(String token){
         for(Token tokenInLot:tokenForLot){
-            if(tokenInLot.getTokenNumber() == token.getTokenNumber()){
+            if(tokenInLot.getTokenNumber() == token){
                 tokenForLot.remove(tokenInLot);
-                Slot slot = token.getSlotDetails();
+                Slot slot = tokenInLot.getSlotDetails();
                 int slotNumber = slot.getSlotNumber();
-                String processMessage = removeCarFromSlot(token,slotNumber);
+                String processMessage = removeCarFromSlot(tokenInLot,slotNumber);
                 return  processMessage;
             }
             return "No token found";
@@ -78,10 +78,11 @@ public class ParkingLot {
         }
         return null;
     }
-    public Token searchTokenNumber(String tokenNumber){
+    public String searchCarNumber(String carNumber){
         for(Token tokenSearch:tokenForLot){
-            if(tokenSearch.getTokenNumber() == tokenNumber){
-                return tokenSearch;
+            Car carDetails = tokenSearch.getCarDetails();
+            if(carDetails.getCarNumber() == carNumber){
+                return "Token Number: " +tokenSearch.getTokenNumber()+" Slot Number: " +tokenSearch.getSlotDetails().getSlotNumber()+"Car Color: " +tokenSearch.getCarDetails().getCarColor();
             }
         }
         return null;

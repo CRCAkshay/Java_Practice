@@ -23,9 +23,6 @@ public class Slot {
     public Integer getSlotNumber() {
         return slotNumber;
     }
-    public boolean getisParked() {
-        return isParked;
-    }
     public void makeSlotOccupied() {
         this.isParked = true;
     }
