@@ -97,4 +97,11 @@ public class ParkingLot {
         }
         return isSlotAvailable;
     }
+    public String listAllCars(){
+        for(Token tokenSearch:tokenForLot){
+            String carDetails = tokenSearch.getCarDetails().getCarNumber();
+            return "\nToken Number: " +tokenSearch.getTokenNumber()+"\nSlot Number: " +tokenSearch.getSlotDetails().getSlotNumber()+"\nCar Color: " +tokenSearch.getCarDetails().getCarColor();
+        }
+        return "No any car so far";
+    }
 }

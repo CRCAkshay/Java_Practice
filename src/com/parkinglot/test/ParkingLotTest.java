@@ -70,4 +70,15 @@ public class ParkingLotTest {
         String searchToken = numberOfSlots.searchCarNumber("WrongVal");
         assertEquals(searchToken,"There is no any car");
     }
+
+    @Test
+    public void testTolistAllCar(){
+        ParkingLot numberOfSlots = new ParkingLot(2);
+        Car car = new Car();
+        car.setCarNumber("123");
+        car.setCarColor("Blue");
+        numberOfSlots.parkTheCar(car);
+        String searchToken = numberOfSlots.listAllCars();
+        assertNotNull(searchToken);
+    }
 }

@@ -38,8 +38,8 @@ public class MainMenu {
             case "3":
                 makeSearch();
                 break;
-//            case "4":
-//                listTotalCars();
+            case "4":
+                listTotalCars();
             default:
         }
     }
@@ -85,6 +85,14 @@ public class MainMenu {
             System.out.println("No parking with this Token");
         }
 
+        mainMenu();
+    }
+    public static void listTotalCars(){
+        try {
+            System.out.println(parkingLot.listAllCars());
+        }catch (Exception e){
+            System.out.println("No parking with this Token");
+        }
         mainMenu();
     }
 }
