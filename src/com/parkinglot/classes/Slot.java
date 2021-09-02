@@ -5,21 +5,17 @@ import java.util.ArrayList;
 public class Slot {
     private boolean isParked;
     private Integer slotNumber;
-    private ArrayList<Slot> totalSlots;
+
+
+    public Slot(Integer slotNumber){
+        this.slotNumber = slotNumber;
+        this.isParked = false;
+    }
 
     public boolean isSlotFree() {
         return isParked != true;
     }
-    public ArrayList<Slot> initializeSlot(int totalNumberOfSlot){
 
-        this.totalSlots = new ArrayList<Slot>() {};
-        for (int i=1; i<= totalNumberOfSlot; i++) {
-            this.slotNumber =i;
-            totalSlots.add(this);
-        }
-
-        return totalSlots;
-    }
     public Slot makeSlotFree(){
         isParked = false;
         return this;
@@ -27,8 +23,11 @@ public class Slot {
     public Integer getSlotNumber() {
         return slotNumber;
     }
-
-    public void makeSlotOccupied() {
-        this.isParked = false;
+    public boolean getisParked() {
+        return isParked;
     }
+    public void makeSlotOccupied() {
+        this.isParked = true;
+    }
+
 }

@@ -10,16 +10,27 @@ public class ParkingLot {
     ArrayList<Slot> availableSlotList;
     private List<Token> tokenForLot;
     private List<Token> historyOfParking;
+    private ArrayList<Slot> totalSlots;
 
     public ParkingLot(int totalNumberOfSlots){
         this.totalNumberOfSlots = totalNumberOfSlots;
         this.tokenForLot = new ArrayList<>();
         this.historyOfParking = new ArrayList<>();
-        Slot getSlotAssignment = new Slot();
-        this.availableSlotList = getSlotAssignment.initializeSlot(totalNumberOfSlots);
-    }
 
+        this.availableSlotList = initializeSlot(totalNumberOfSlots);
+    }
+        public ArrayList<Slot> initializeSlot(int totalNumberOfSlot){
+
+        this.totalSlots = new ArrayList<Slot>() {};
+        for (int i=1; i<= totalNumberOfSlot; i++) {
+            Slot getSlotAssignment = new Slot(i);
+            totalSlots.add(getSlotAssignment);
+        }
+        return totalSlots;
+
+    }
     public Token parkTheCar(Car car){
+
         if(isSlotAvailble()){
             Slot availableSlot = getTheNextFreeSlot();
             Token parkingToken = new Token(String.valueOf(System.currentTimeMillis()),availableSlot,car);
