@@ -80,12 +80,12 @@ public class ParkingLot {
     }
     public String searchCarNumber(String carNumber){
         for(Token tokenSearch:tokenForLot){
-            Car carDetails = tokenSearch.getCarDetails();
-            if(carDetails.getCarNumber() == carNumber){
-                return "Token Number: " +tokenSearch.getTokenNumber()+" Slot Number: " +tokenSearch.getSlotDetails().getSlotNumber()+"Car Color: " +tokenSearch.getCarDetails().getCarColor();
+            String carDetails = tokenSearch.getCarDetails().getCarNumber();
+            if(carDetails.equalsIgnoreCase(carNumber)){
+                return "Token Number: " +tokenSearch.getTokenNumber()+"\nSlot Number: " +tokenSearch.getSlotDetails().getSlotNumber()+"\nCar Color: " +tokenSearch.getCarDetails().getCarColor();
             }
         }
-        return null;
+        return "There is no any car";
     }
     private boolean isSlotAvailble() {
         boolean isSlotAvailble = false;
