@@ -2,14 +2,10 @@ package com.parkinglot.test;
 import com.parkinglot.classes.Car;
 import com.parkinglot.classes.Token;
 import com.parkinglot.service.ParkingLot;
-import jdk.jshell.spi.ExecutionControl;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class ParkingLotTest {
-
-    private Token tokenNumber;
-
     @Test
     public void testToParkTheCar(){
         ParkingLot numberOfSlots = new ParkingLot(2);
@@ -17,7 +13,7 @@ public class ParkingLotTest {
         car.setCarNumber("Abc");
         car.setCarColor("Blue");
         Token token = numberOfSlots.parkTheCar(car);
-        assertTrue(!token.getTokenNumber().isBlank());
+        assertFalse(token.getTokenNumber().isBlank());
 
     }
 
@@ -39,17 +35,17 @@ public class ParkingLotTest {
         Car car = new Car();
         car.setCarNumber("Abc1");
         car.setCarColor("Blue1");
-        Token Token1 = numberOfSlots.parkTheCar(car);
+        numberOfSlots.parkTheCar(car);
 
         car.setCarNumber("Abc2");
         car.setCarColor("Blue3");
-        Token Token2 = numberOfSlots.parkTheCar(car);
+        numberOfSlots.parkTheCar(car);
 
         car.setCarNumber("Abc3");
         car.setCarColor("Blue3");
         Token Token3 = numberOfSlots.parkTheCar(car);
 
-        assertEquals(Token3,null);
+        assertNull(Token3);
 
     }
 
@@ -61,7 +57,7 @@ public class ParkingLotTest {
         car.setCarColor("Blue");
         numberOfSlots.parkTheCar(car);
         String searchToken = numberOfSlots.searchCarNumber("123");
-        assertTrue(searchToken instanceof String);
+        assertNotNull(searchToken);
     }
 
     @Test

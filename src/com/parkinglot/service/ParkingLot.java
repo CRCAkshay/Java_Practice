@@ -31,7 +31,7 @@ public class ParkingLot {
     }
     public Token parkTheCar(Car car){
 
-        if(isSlotAvailble()){
+        if(isSlotAvailable()){
             Slot availableSlot = getTheNextFreeSlot();
             Token parkingToken = new Token(String.valueOf(System.currentTimeMillis()),availableSlot,car);
             this.tokenForLot.add(parkingToken);
@@ -43,12 +43,11 @@ public class ParkingLot {
 
     public String unParkTheCar(String token){
         for(Token tokenInLot:tokenForLot){
-            if(tokenInLot.getTokenNumber() == token){
+            if(tokenInLot.getTokenNumber().equals(token)){
                 tokenForLot.remove(tokenInLot);
                 Slot slot = tokenInLot.getSlotDetails();
                 int slotNumber = slot.getSlotNumber();
-                String processMessage = removeCarFromSlot(tokenInLot,slotNumber);
-                return  processMessage;
+                return removeCarFromSlot(tokenInLot,slotNumber);
             }
             return "No token found";
         }
@@ -87,15 +86,15 @@ public class ParkingLot {
         }
         return "There is no any car";
     }
-    private boolean isSlotAvailble() {
-        boolean isSlotAvailble = false;
+    private boolean isSlotAvailable() {
+        boolean isSlotAvailable = false;
 
         for(Slot slot:availableSlotList){
             if(slot.isSlotFree()){
-                isSlotAvailble = true;
+                isSlotAvailable = true;
                 break;
             }
         }
-        return isSlotAvailble;
+        return isSlotAvailable;
     }
 }
