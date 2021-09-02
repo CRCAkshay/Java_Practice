@@ -61,7 +61,7 @@ public class ParkingLotTest {
         car.setCarColor("Blue");
         numberOfSlots.parkTheCar(car);
         String searchToken = numberOfSlots.searchCarNumber("123");
-        assertEquals(searchToken,"Blue");
+        assertTrue(searchToken instanceof String);
     }
 
     @Test
@@ -72,6 +72,6 @@ public class ParkingLotTest {
         car.setCarColor("Blue");
         numberOfSlots.parkTheCar(car);
         String searchToken = numberOfSlots.searchCarNumber("WrongVal");
-        assertEquals(searchToken,null);
+        assertEquals(searchToken,"There is no any car");
     }
 }

@@ -8,6 +8,7 @@ public class SlotTest {
     Slot slot = new Slot(1);
     int slotNumber=slot.getSlotNumber();
     assertEquals(slotNumber,1);
+    assertEquals(slot.isSlotFree(),true);
     }
 }
 
