@@ -12,10 +12,6 @@ public class ParkingLot {
     private List<Token> historyOfParking;
     private ArrayList<Slot> totalSlots;
 
-    public static void main(String[] args){
-        ParkingLot abc = new ParkingLot(10);
-    }
-
     public ParkingLot(int totalNumberOfSlots){
         this.totalNumberOfSlots = totalNumberOfSlots;
         this.tokenForLot = new ArrayList<>();
@@ -58,7 +54,7 @@ public class ParkingLot {
         return null;
     }
 
-    public String removeCarFromSlot(Token token, int slotNumber) {
+    private String removeCarFromSlot(Token token, int slotNumber) {
         for (Slot removeEntry:availableSlotList){
 
             if(removeEntry.getSlotNumber() == slotNumber){

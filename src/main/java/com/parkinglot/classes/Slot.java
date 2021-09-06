@@ -13,7 +13,7 @@ public class Slot {
     }
 
     public boolean isSlotFree() {
-        return isParked != true;
+        return !isParked;
     }
 
     public Slot makeSlotFree(){
@@ -23,8 +23,9 @@ public class Slot {
     public Integer getSlotNumber() {
         return slotNumber;
     }
-    public void makeSlotOccupied() {
+    public Slot makeSlotOccupied() {
         this.isParked = true;
+        return this;
     }
 
 }

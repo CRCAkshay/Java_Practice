@@ -5,10 +5,8 @@ import static org.junit.jupiter.api.Assertions.*;
 public class CarTest {
     @Test
     public void testTheCarObject(){
-        Car car = new Car();
-        car.setCarNumber("123");
-        car.setCarColor("Blue");
+        Car car = new Car("Blue","TS01GG1234");
         assertEquals(car.getCarColor(),"Blue");
-        assertEquals(car.getCarNumber(),"123");
+        assertEquals(car.getCarNumber(),"TS01GG1234");
     }
 }

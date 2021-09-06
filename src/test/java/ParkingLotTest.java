@@ -10,9 +10,7 @@ public class ParkingLotTest {
     @Test
     public void testToParkTheCar(){
         ParkingLot numberOfSlots = new ParkingLot(2);
-        Car car = new Car();
-        car.setCarNumber("Abc");
-        car.setCarColor("Blue");
+        Car car = new Car("Blue","ABC");
         Token token = numberOfSlots.parkTheCar(car);
         assertFalse(token.getTokenNumber().isBlank());
 
@@ -21,9 +19,8 @@ public class ParkingLotTest {
     @Test
     public void testToUnParkTheCar(){
         ParkingLot numberOfSlots = new ParkingLot(2);
-        Car car = new Car();
-        car.setCarNumber("Abc");
-        car.setCarColor("Blue");
+        Car car = new Car("Blue","ABC");
+
         Token Token = numberOfSlots.parkTheCar(car);
 
         String unParkMessage = numberOfSlots.unParkTheCar(Token.getTokenNumber());
@@ -36,9 +33,8 @@ public class ParkingLotTest {
         String unParkMessage = numberOfSlots.unParkTheCar("1233123");
         assertNull(unParkMessage);
 
-        Car car = new Car();
-        car.setCarNumber("Abc");
-        car.setCarColor("Blue");
+        Car car = new Car("Blue","ABC");
+
         Token Token = numberOfSlots.parkTheCar(car);
 
         String newUnParkMessage = numberOfSlots.unParkTheCar(Token.getTokenNumber()+"12");
@@ -46,34 +42,18 @@ public class ParkingLotTest {
     }
 
     @Test
-    public void testNoCarFoundToRemove(){
+    public void testToParkThreeCarWhenWeHaveTwoSlots(){
         ParkingLot numberOfSlots = new ParkingLot(2);
-        Car car = new Car();
-        car.setCarNumber("Abc");
-        car.setCarColor("Blue");
-        Token Token = numberOfSlots.parkTheCar(car);
+        Car car1 = new Car("Blue","ABC");
+        numberOfSlots.parkTheCar(car1);
 
-        String removeCar = numberOfSlots.removeCarFromSlot(Token,123);
-        assertNull(removeCar);
+        Car car2 = new Car("Red","ABC2");
+        numberOfSlots.parkTheCar(car2);
 
-    }
+        Car car3 = new Car("Yellow","ABC3");
+        Token Token3 = numberOfSlots.parkTheCar(car3);
 
-    @Test
-    public void testToParkManyCars(){
-        ParkingLot numberOfSlots = new ParkingLot(2);
-        Car car = new Car();
-        car.setCarNumber("Abc1");
-        car.setCarColor("Blue1");
-        numberOfSlots.parkTheCar(car);
-
-        car.setCarNumber("Abc2");
-        car.setCarColor("Blue3");
-        numberOfSlots.parkTheCar(car);
-
-        car.setCarNumber("Abc3");
-        car.setCarColor("Blue3");
-        Token Token3 = numberOfSlots.parkTheCar(car);
-
+        //Change it to Exception
         assertNull(Token3);
 
     }
@@ -81,9 +61,7 @@ public class ParkingLotTest {
     @Test
     public void testToSearchATokenPositive(){
         ParkingLot numberOfSlots = new ParkingLot(2);
-        Car car = new Car();
-        car.setCarNumber("123");
-        car.setCarColor("Blue");
+        Car car = new Car("Blue","ABC");
         numberOfSlots.parkTheCar(car);
         String searchToken = numberOfSlots.searchCarNumber("123");
         assertNotNull(searchToken);
@@ -92,9 +70,7 @@ public class ParkingLotTest {
     @Test
     public void testToSearchATokenNegative(){
         ParkingLot numberOfSlots = new ParkingLot(2);
-        Car car = new Car();
-        car.setCarNumber("Abc");
-        car.setCarColor("Blue");
+        Car car = new Car("Blue","ABC");
         numberOfSlots.parkTheCar(car);
         String searchToken = numberOfSlots.searchCarNumber("WrongVal");
         assertEquals(searchToken,"There is no any car");
@@ -103,10 +79,9 @@ public class ParkingLotTest {
     @Test
     public void testTolistAllCar(){
         ParkingLot numberOfSlots = new ParkingLot(2);
-        Car car = new Car();
-        car.setCarNumber("123");
-        car.setCarColor("Blue");
+        Car car = new Car("Blue","ABC");
         numberOfSlots.parkTheCar(car);
+
         String searchToken = numberOfSlots.listAllCars();
         assertNotNull(searchToken);
     }
