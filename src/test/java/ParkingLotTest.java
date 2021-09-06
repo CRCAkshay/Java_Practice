@@ -1,9 +1,10 @@
-package com.parkinglot.test;
 import com.parkinglot.classes.Car;
 import com.parkinglot.classes.Token;
-import com.parkinglot.service.ParkingLot;
-import org.junit.Test;
-import static org.junit.Assert.*;
+import com.parkinglot.services.ParkingLot;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
+
 
 public class ParkingLotTest {
     @Test

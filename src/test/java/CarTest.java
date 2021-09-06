@@ -1,7 +1,7 @@
-package com.parkinglot.test.classes;
 import com.parkinglot.classes.Car;
-import org.junit.Test;
-import static org.junit.Assert.*;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
+
 public class CarTest {
     @Test
     public void testTheCarObject(){

@@ -1,4 +1,4 @@
-package com.parkinglot.service;
+package com.parkinglot.services;
 
 import com.parkinglot.classes.Car;
 import com.parkinglot.classes.Slot;
@@ -11,6 +11,10 @@ public class ParkingLot {
     private List<Token> tokenForLot;
     private List<Token> historyOfParking;
     private ArrayList<Slot> totalSlots;
+
+    public static void main(String[] args){
+        ParkingLot abc = new ParkingLot(10);
+    }
 
     public ParkingLot(int totalNumberOfSlots){
         this.totalNumberOfSlots = totalNumberOfSlots;
