@@ -58,7 +58,7 @@ public class ParkingLot {
         return null;
     }
 
-    private String removeCarFromSlot(Token token, int slotNumber) {
+    public String removeCarFromSlot(Token token, int slotNumber) {
         for (Slot removeEntry:availableSlotList){
 
             if(removeEntry.getSlotNumber() == slotNumber){

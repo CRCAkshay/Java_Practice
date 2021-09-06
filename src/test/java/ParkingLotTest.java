@@ -31,6 +31,34 @@ public class ParkingLotTest {
     }
 
     @Test
+    public void testUnParkInvalidCar(){
+        ParkingLot numberOfSlots = new ParkingLot(2);
+        String unParkMessage = numberOfSlots.unParkTheCar("1233123");
+        assertNull(unParkMessage);
+
+        Car car = new Car();
+        car.setCarNumber("Abc");
+        car.setCarColor("Blue");
+        Token Token = numberOfSlots.parkTheCar(car);
+
+        String newUnParkMessage = numberOfSlots.unParkTheCar(Token.getTokenNumber()+"12");
+        assertEquals(newUnParkMessage,"No token found");
+    }
+
+    @Test
+    public void testNoCarFoundToRemove(){
+        ParkingLot numberOfSlots = new ParkingLot(2);
+        Car car = new Car();
+        car.setCarNumber("Abc");
+        car.setCarColor("Blue");
+        Token Token = numberOfSlots.parkTheCar(car);
+
+        String removeCar = numberOfSlots.removeCarFromSlot(Token,123);
+        assertNull(removeCar);
+
+    }
+
+    @Test
     public void testToParkManyCars(){
         ParkingLot numberOfSlots = new ParkingLot(2);
         Car car = new Car();
@@ -81,5 +109,12 @@ public class ParkingLotTest {
         numberOfSlots.parkTheCar(car);
         String searchToken = numberOfSlots.listAllCars();
         assertNotNull(searchToken);
+    }
+
+    @Test
+    public void testNoList(){
+        ParkingLot numberOfSlots = new ParkingLot(0);
+        String searchCar = numberOfSlots.listAllCars();
+        assertEquals(searchCar,"No any car so far");
     }
 }
