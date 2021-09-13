@@ -23,8 +23,9 @@ public class ParkingLotControllerIntegrationTest
 
     HttpHeaders headers = new HttpHeaders();
     @Test
-    public void testAllEmployees()
+    public void testGetCarIntegration()
     {
+
 
     }
     @Test

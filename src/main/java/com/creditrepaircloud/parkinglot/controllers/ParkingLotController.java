@@ -21,14 +21,8 @@ public class ParkingLotController {
     }
     @PostMapping("/initiateLot")
     public ArrayList<Slot> initiateLot(@RequestParam("NumberOfLot") String numberOfLot){
-        System.out.println(numberOfLot);
         ArrayList<Slot> availableSlot= parkingLot.initiateLot(Integer.parseInt(numberOfLot));
         return  availableSlot;
-//        if(availableSlot.size()>0){
-//            return "Parking Lot Initialized";
-//        }else {
-//            return "There was a problem initializing parking lot.";
-//        }
     }
     @DeleteMapping("/unParkTheCar/{tokenNumber}")
     public String unParkCar(@PathVariable String tokenNumber){
@@ -38,7 +32,6 @@ public class ParkingLotController {
 
     @GetMapping("/getCar/{carNumber}")
     public Token getCar(@PathVariable String carNumber) {
-        System.out.println("herereer");
         Token token = parkingLot.getCar(carNumber);
         return token;
     }
