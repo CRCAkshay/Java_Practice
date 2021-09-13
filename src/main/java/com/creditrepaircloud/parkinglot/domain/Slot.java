@@ -1,6 +1,5 @@
-package com.parkinglot.classes;
+package com.creditrepaircloud.parkinglot.domain;
 
-import java.util.ArrayList;
 
 public class Slot {
     private boolean isParked;

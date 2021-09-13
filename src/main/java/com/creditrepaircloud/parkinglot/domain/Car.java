@@ -1,4 +1,5 @@
-package com.parkinglot.classes;
+package com.creditrepaircloud.parkinglot.domain;
+
 
 public class Car {
     private String carColor;
@@ -8,12 +9,11 @@ public class Car {
         this.carColor = carColor;
         this.carNumber = carNumber;
     }
-
-    public String getCarColor() {
-        return carColor;
-    }
-
     public String getCarNumber() {
         return carNumber;
+    }
+
+    public String getCarColor() {
+        return  this.carColor;
     }
 }

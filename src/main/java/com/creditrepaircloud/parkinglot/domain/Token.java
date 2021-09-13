@@ -1,4 +1,5 @@
-package com.parkinglot.classes;
+package com.creditrepaircloud.parkinglot.domain;
+
 
 import java.util.Date;
 public class Token {
