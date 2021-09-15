@@ -71,10 +71,10 @@ public class ParkingLotControllerTest {
 
     }
     @Test
-    public void testTheinitiateLotFunctionality() throws Exception
+    public void testToInitiateLotFunctionality() throws Exception
     {
         Slot slot = new Slot(1);
-        ArrayList<Slot> slotList = new ArrayList<Slot>();
+        ArrayList<Slot> slotList = new ArrayList<>();
         slotList.add(slot);
         String jsonString = "[{\"numberOfLot\":\"10\"}]";
 

@@ -3,8 +3,6 @@ import com.creditrepaircloud.parkinglot.domain.Slot;
 import com.creditrepaircloud.parkinglot.domain.Token;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.springframework.web.bind.annotation.ExceptionHandler;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,7 +34,7 @@ class ParkingLotImpTest {
         assertEquals(unParkMessage,"Car entry removed");
     }
     @Test
-    public void testUnParkInvalidCar() throws Exception{
+    public void testUnParkInvalidCar(){
         String newUnParkMessage = null;
         try {
             Token token = parkingLot.parkTheCar("Blue","TS08GG1234");
@@ -48,12 +46,12 @@ class ParkingLotImpTest {
     }
 
     @Test
-    public void testToParkThreeCarWhenWeHaveTwoSlots() throws Exception{
+    public void testToParkThreeCarWhenWeHaveTwoSlots(){
         String NoSlotException = null;
         try {
-            Token token1 = parkingLot.parkTheCar("Blue","TS08GG1234");
-            Token token2 = parkingLot.parkTheCar("Red","TS08GG1232");
-            Token token3 = parkingLot.parkTheCar("Yellow","TS08GG1233");
+            parkingLot.parkTheCar("Blue","TS08GG1234");
+            parkingLot.parkTheCar("Red","TS08GG1232");
+            parkingLot.parkTheCar("Yellow","TS08GG1233");
         }catch (Exception e){
             NoSlotException = e.getMessage();
         }
@@ -64,14 +62,14 @@ class ParkingLotImpTest {
     void testToSearchATokenWithCarNumber() throws Exception{
         Token initialToken = parkingLot.parkTheCar("Blue","TS08GG1234");
         Token searchResult = parkingLot.getCar(initialToken.getCarDetails().getCarNumber());
-        assertTrue(searchResult.getCarDetails().getCarNumber() == initialToken.getCarDetails().getCarNumber());
+        assertSame(searchResult.getCarDetails().getCarNumber() , initialToken.getCarDetails().getCarNumber());
     }
     @Test
-    void testToSearchATokenWithInvalidCarNumber() throws Exception{
+    void testToSearchATokenWithInvalidCarNumber(){
         String ExceptionMessage = null;
         try {
             Token initialToken = parkingLot.parkTheCar("Blue", "TS08GG1234");
-            Token searchResult = parkingLot.getCar(initialToken.getCarDetails().getCarNumber() + "123");
+            parkingLot.getCar(initialToken.getCarDetails().getCarNumber() + "123");
         }catch (Exception e){
             ExceptionMessage = e.getMessage();
         }
@@ -84,10 +82,10 @@ class ParkingLotImpTest {
     }
     @Test
     public void testToListAllCar() throws Exception{
-        Token initialToken = parkingLot.parkTheCar("Blue","TS08GG1234");
-        Token initialToken2 = parkingLot.parkTheCar("Red","TS08GG1232");
+        parkingLot.parkTheCar("Blue","TS08GG1234");
+        parkingLot.parkTheCar("Red","TS08GG1232");
         String searchResult = parkingLot.listAllCars();
-        assertTrue(!searchResult.isBlank());
+        assertFalse(searchResult.isBlank());
     }
     @Test
     public void testTheHistoryOfTheParking() throws Exception{
@@ -96,7 +94,7 @@ class ParkingLotImpTest {
         parkingLot.unParkTheCar(initialToken.getTokenNumber());
         parkingLot.unParkTheCar(initialToken2.getTokenNumber());
         List<Token> searchResult = parkingLot.historyOfParking();
-        assertTrue(!searchResult.isEmpty());
+        assertFalse(searchResult.isEmpty());
     }
 
 }

@@ -21,7 +21,7 @@ public class ParkingLotImp implements ParkingLot{
 
    @Override
    public ArrayList<Slot> initiateLot(int numberOfLots) {
-      ArrayList<Slot> totalSlots = new ArrayList<Slot>() {};
+      ArrayList<Slot> totalSlots = new ArrayList<>() {};
       for (int i = 1; i<= numberOfLots; i++) {
          Slot getSlotAssignment = new Slot(i);
          totalSlots.add(getSlotAssignment);
