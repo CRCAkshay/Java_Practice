@@ -6,8 +6,8 @@ import com.creditrepaircloud.parkinglot.domain.Token;
 import java.util.ArrayList;
 
 public interface ParkingLot {
-    public Token parkTheCar(String carColor, String carNumber);
+    public Token parkTheCar(String carColor, String carNumber) throws Exception;
     public ArrayList<Slot> initiateLot (int numberOfLots);
-    public String unParkTheCar(String tokenNumber);
-    public Token getCar(String carNumber);
+    public String unParkTheCar(String tokenNumber) throws Exception;
+    public Token getCar(String carNumber) throws Exception;
 }

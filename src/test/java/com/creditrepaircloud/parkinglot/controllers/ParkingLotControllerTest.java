@@ -6,6 +6,8 @@ import com.creditrepaircloud.parkinglot.domain.Car;
 import com.creditrepaircloud.parkinglot.domain.Slot;
 import com.creditrepaircloud.parkinglot.domain.Token;
 import com.creditrepaircloud.parkinglot.services.ParkingLot;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -13,6 +15,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.MediaType;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
@@ -71,13 +74,17 @@ public class ParkingLotControllerTest {
     public void testTheinitiateLotFunctionality() throws Exception
     {
         Slot slot = new Slot(1);
-        ArrayList<Slot> Success = new ArrayList<Slot>();
-        Success.add(slot);
+        ArrayList<Slot> slotList = new ArrayList<Slot>();
+        slotList.add(slot);
+        String jsonString = "[{\"numberOfLot\":\"10\"}]";
 
-        when(parkingLotController.initiateLot("10")).thenReturn(Success);
+        ObjectMapper mapper = new ObjectMapper();
+        JsonNode slotObj = mapper.readTree(jsonString);
+        when(parkingLotController.initiateLot(slotObj)).thenReturn(slotList);
 
         mockMvc.perform(post("/initiateLot")
-                .param("NumberOfLot","10"))
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(jsonString))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$[0].slotNumber").value("1"))
                 .andExpect(jsonPath("$[0].slotFree").value("true"));
@@ -88,12 +95,16 @@ public class ParkingLotControllerTest {
     @Test
     public void testTheParkTheCarService() throws Exception
     {
+        String jsonString = "[{\"color\":\"Blue\",\"number\":\"123\"}]";
+
+        ObjectMapper mapper = new ObjectMapper();
+        JsonNode carObj = mapper.readTree(jsonString);
         Token token = new Token("XYZ123123",new Slot(123),new Car("Blue","123"));
 
-        when(parkingLotController.parkCar("Blue","123")).thenReturn(token);
+        when(parkingLotController.parkCar(carObj)).thenReturn(token);
         mockMvc.perform(post("/ParkTheCar")
-                        .param("Color","Blue")
-                        .param("Number","123")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(jsonString)
                 )
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$['carDetails'].carColor").value("Blue"))
