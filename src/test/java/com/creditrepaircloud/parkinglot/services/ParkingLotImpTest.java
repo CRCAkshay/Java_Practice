@@ -1,6 +1,7 @@
 package com.creditrepaircloud.parkinglot.services;
 import com.creditrepaircloud.parkinglot.domain.Slot;
 import com.creditrepaircloud.parkinglot.domain.Token;
+import org.junit.Ignore;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
@@ -15,6 +16,13 @@ class ParkingLotImpTest {
     @BeforeEach
     public void beforeAllMethod(){
         parkingLot.initiateLot(2);
+    }
+
+
+    @Ignore
+    public void testForLotIsNull() throws Exception{
+        parkingLot.initiateLot(0);
+        Token token = parkingLot.parkTheCar("Blue","TS08GG1234");
     }
 
     @Test

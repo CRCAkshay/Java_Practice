@@ -19,9 +19,7 @@ public class ParkingLotController {
     public Token parkCar(@RequestBody() JsonNode car) throws Exception {
         String carNumber = car.get(0).get("number").asText();
         String carColor = car.get(0).get("color").asText();
-
         return parkingLot.parkTheCar(carColor,carNumber);
-
     }
     @PostMapping(value = "/initiateLot", consumes = "application/json")
     public ArrayList<Slot> initiateLot(@RequestBody() JsonNode numberOfLot){
