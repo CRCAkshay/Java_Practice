@@ -2,6 +2,7 @@ package com.creditrepaircloud.parkinglot.controllers;
 
 import com.creditrepaircloud.parkinglot.domain.Slot;
 import com.creditrepaircloud.parkinglot.domain.Token;
+import com.creditrepaircloud.parkinglot.exception.BadRequest;
 import com.creditrepaircloud.parkinglot.services.ParkingLot;
 import com.fasterxml.jackson.databind.JsonNode;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,9 +18,13 @@ public class ParkingLotController {
 
     @PostMapping(value = "/ParkTheCar", consumes = "application/json")
     public Token parkCar(@RequestBody() JsonNode car) throws Exception {
-        String carNumber = car.get(0).get("number").asText();
-        String carColor = car.get(0).get("color").asText();
-        return parkingLot.parkTheCar(carColor,carNumber);
+        if(!car.isEmpty()) {
+            String carNumber = car.get(0).get("number").asText();
+            String carColor = car.get(0).get("color").asText();
+            return parkingLot.parkTheCar(carColor, carNumber);
+        }else{
+            throw new BadRequest("Missing Body Parameters!");
+        }
     }
     @PostMapping(value = "/initiateLot", consumes = "application/json")
     public ArrayList<Slot> initiateLot(@RequestBody() JsonNode numberOfLot){

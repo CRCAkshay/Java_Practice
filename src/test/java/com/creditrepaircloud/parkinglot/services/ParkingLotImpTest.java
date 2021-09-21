@@ -1,12 +1,14 @@
 package com.creditrepaircloud.parkinglot.services;
 import com.creditrepaircloud.parkinglot.domain.Slot;
 import com.creditrepaircloud.parkinglot.domain.Token;
+import org.hamcrest.MatcherAssert;
 import org.junit.Ignore;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.hamcrest.Matchers.containsString;
 import static org.junit.jupiter.api.Assertions.*;
 
 class ParkingLotImpTest {
@@ -63,7 +65,7 @@ class ParkingLotImpTest {
         }catch (Exception e){
             NoSlotException = e.getMessage();
         }
-        assertEquals(NoSlotException,"No Slot available!");
+        assertEquals(NoSlotException,"Slot is not initialized!");
 
     }
     @Test
@@ -81,7 +83,7 @@ class ParkingLotImpTest {
         }catch (Exception e){
             ExceptionMessage = e.getMessage();
         }
-        assertEquals(ExceptionMessage,"No Car with the given car number");
+        MatcherAssert.assertThat(ExceptionMessage, containsString("There is no car with carNumber"));
     }
     @Test
     public void testNoList(){

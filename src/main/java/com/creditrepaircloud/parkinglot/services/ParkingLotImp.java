@@ -3,6 +3,7 @@ package com.creditrepaircloud.parkinglot.services;
 import com.creditrepaircloud.parkinglot.domain.Car;
 import com.creditrepaircloud.parkinglot.domain.Slot;
 import com.creditrepaircloud.parkinglot.domain.Token;
+import com.creditrepaircloud.parkinglot.exception.DataNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -38,19 +39,23 @@ public class ParkingLotImp implements ParkingLot{
          this.tokenForLot.add(parkingToken);
          return parkingToken;
       }else {
-         throw new Exception("No Slot available!");
+         throw new DataNotFoundException("Slot is not initialized!");
       }
    }
    private boolean isSlotAvailable() {
-      boolean isSlotAvailable = false;
+      if(availableSlotList!=null) {
+         boolean isSlotAvailable = false;
 
-      for(Slot slot:availableSlotList){
-         if(slot.isSlotFree()){
-            isSlotAvailable = true;
-            break;
+         for (Slot slot : availableSlotList) {
+            if (slot.isSlotFree()) {
+               isSlotAvailable = true;
+               break;
+            }
          }
+         return isSlotAvailable;
+      }else {
+         throw new DataNotFoundException("Slot is not initialized!");
       }
-      return isSlotAvailable;
    }
    private Slot getTheNextFreeSlot() throws Exception{
          for(Slot slot : availableSlotList){
@@ -59,7 +64,7 @@ public class ParkingLotImp implements ParkingLot{
                return slot;
             }
          }
-         throw new Exception("Slot is not initialized!");
+      throw new DataNotFoundException("Slot is not initialized!");
    }
 
    @Override
@@ -70,7 +75,7 @@ public class ParkingLotImp implements ParkingLot{
            return tokenSearch;
          }
       }
-      throw new Exception("No Car with the given car number");
+      throw new DataNotFoundException("There is no car with carNumber:"+carNumber+"");
    }
 
    @Override
@@ -86,9 +91,9 @@ public class ParkingLotImp implements ParkingLot{
                throw new Exception(e.getMessage());
             }
          }
-         throw new Exception("Invalid token number.");
+         throw new DataNotFoundException("Invalid token number.");
       }
-      throw new Exception("Lot is empty.");
+      throw new DataNotFoundException("Lot is empty.");
    }
 
 
@@ -102,7 +107,7 @@ public class ParkingLotImp implements ParkingLot{
          }
 
       }
-      throw new Exception("Slot not available with given slot details");
+      throw new DataNotFoundException("Slot not available with given slot details");
    }
    public String listAllCars(){
       for(Token tokenSearch:tokenForLot){
